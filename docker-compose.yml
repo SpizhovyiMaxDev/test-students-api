@@ -33,4 +33,8 @@ networks:
 # can communicate with each other
 
 volumes:
+  # Define named volume for PostgreSQL data persistence
+  # This creates a Docker-managed volume that persists data
+  # even when the container is removed, ensuring database
+  # data survives container restarts and updates
   postgres_data:

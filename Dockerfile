@@ -1,7 +1,7 @@
 # Use image base with Java installed
 FROM openjdk:21-jdk
 
-# Copy the compiled JAR into the image
+# Copy the compiled JAR into the image env
 COPY target/student-api.jar student-api.jar
 
 # Optional: declare working directory
