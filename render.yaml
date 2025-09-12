@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: students-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      # These will be set in Render Dashboard with actual values
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: DDL_AUTO
+        value: update
+      - key: SHOW_SQL
+        value: false
+    healthCheckPath: /actuator/health
+    autoDeploy: true

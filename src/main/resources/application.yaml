@@ -1,17 +1,29 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/students_db
-    username: max
-    password: mmaaxx
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+      ddl-auto: ${DDL_AUTO:create-drop}
+    show-sql: ${SHOW_SQL:false}
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-  sql:
-    init:
-      mode: always
-      continue-on-error: true
-      data-locations: classpath:data.sql
-      platform: postgresql
+  # sql:
+  #   init:
+  #     mode: always
+  #     continue-on-error: true
+  #     data-locations: classpath:data.sql
+  #     platform: postgresql
+
+server:
+  port: ${PORT:8080}
+
+management: # Spring Boot Actuator configuration (monitoring/health checks)
+  endpoints: # Defines which monitoring endpoints are available
+    web: # Web-based endpoints (HTTP URLs)
+      exposure: # Which endpoints to expose publicly
+        include: health,info # Only expose /actuator/health and /actuator/info
+  endpoint:
+    health:
+      show-details: when-authorized # Only show detailed health info to authorized users
