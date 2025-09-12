@@ -1,9 +1,0 @@
-code_env/dto/StudentDto.class
-code_env/controllers/StudentController.class
-code_env/repository/StudentRepository.class
-code_env/service/StudentService.class
-code_env/dto/StudentResponseDto.class
-code_env/RestDemoApplication.class
-code_env/model/Student$StudentBuilder.class
-code_env/controllers/HealthController.class
-code_env/model/Student.class
