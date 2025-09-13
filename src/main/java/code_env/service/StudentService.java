@@ -19,6 +19,7 @@ public class StudentService {
                 .name(studentDto.name())
                 .email(studentDto.email())
                 .age(studentDto.age())
+                .grade(studentDto.grade())
                 .build();
 
         Student savedStudent = repository.save(newStudent);
@@ -26,7 +27,8 @@ public class StudentService {
                 savedStudent.getId(),
                 savedStudent.getName(),
                 savedStudent.getEmail(),
-                savedStudent.getAge()
+                savedStudent.getAge(),
+                savedStudent.getGrade()
         );
     }
 
@@ -36,26 +38,27 @@ public class StudentService {
                         .name(dto.name())
                         .email(dto.email())
                         .age(dto.age())
+                        .grade(dto.grade())
                         .build())
                 .toList();
 
         List<Student> saved = repository.saveAll(toSave);
 
         return saved.stream()
-                .map(s -> new StudentResponseDto(s.getId(), s.getName(), s.getEmail(), s.getAge()))
+                .map(s -> new StudentResponseDto(s.getId(), s.getName(), s.getEmail(), s.getAge(), s.getGrade()))
                 .toList();
     }
 
     public List<StudentResponseDto> getAllStudents() {
         return repository.findAll().stream()
-                .map(s -> new StudentResponseDto(s.getId(), s.getName(), s.getEmail(), s.getAge()))
+                .map(s -> new StudentResponseDto(s.getId(), s.getName(), s.getEmail(), s.getAge(), s.getGrade()))
                 .toList();
     }
 
     public StudentResponseDto getStudentById(int id) {
         Student student = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
-        return new StudentResponseDto(student.getId(), student.getName(), student.getEmail(), student.getAge());
+        return new StudentResponseDto(student.getId(), student.getName(), student.getEmail(), student.getAge(), student.getGrade());
     }
 
     public StudentResponseDto updateStudent(int id, StudentDto studentDto) {
@@ -65,9 +68,10 @@ public class StudentService {
         existingStudent.setName(studentDto.name());
         existingStudent.setEmail(studentDto.email());
         existingStudent.setAge(studentDto.age());
+        existingStudent.setGrade(studentDto.grade());
         
         Student updated = repository.save(existingStudent);
-        return new StudentResponseDto(updated.getId(), updated.getName(), updated.getEmail(), updated.getAge());
+        return new StudentResponseDto(updated.getId(), updated.getName(), updated.getEmail(), updated.getAge(), updated.getGrade());
     }
 
     public void deleteStudent(int id) {

@@ -15,6 +15,9 @@ public record StudentDto(
         
         @NotNull(message = "Age is required")
         @Min(value = 14, message = "Age must be at least 14")
-        int age
+        int age,
+        
+        @NotBlank(message = "Grade is required")
+        String grade
 ) {}
 

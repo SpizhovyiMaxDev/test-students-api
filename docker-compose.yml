@@ -1,21 +1,25 @@
 version: "3.8"
 
 services:
-  application:
+  students-api:
     build: .
-    container_name: student-api
+    # container_name: student-api
     ports:
       - "8080:8080"
     depends_on: # Tells application service to wait until postgres container is up and running
       - postgres
     networks:
       - api-network
+    env_file:
+      - .env
 
   postgres:
     image: postgres:latest
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: max
-      POSTGRES_PASSWORD: mmaaxx
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: students_db
     ports:
       - "5433:5432"
