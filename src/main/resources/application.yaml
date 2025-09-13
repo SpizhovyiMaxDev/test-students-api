@@ -9,12 +9,6 @@ spring:
       ddl-auto: ${DDL_AUTO:create-drop}
     show-sql: ${SHOW_SQL:false}
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-  # sql:
-  #   init:
-  #     mode: always
-  #     continue-on-error: true
-  #     data-locations: classpath:data.sql
-  #     platform: postgresql
 
 server:
   port: ${PORT:8080}
