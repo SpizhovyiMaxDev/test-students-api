@@ -12,6 +12,7 @@ spring:
 
 server:
   port: ${PORT:8080}
+  address: 0.0.0.0
 
 management: # Spring Boot Actuator configuration (monitoring/health checks)
   endpoints: # Defines which monitoring endpoints are available
